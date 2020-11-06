@@ -54,6 +54,7 @@ event zeek_init()
 	                  $threshold=typeof_scan_threshold,
 	                  $threshold_crossed(key: SumStats::Key, result: SumStats::Result) =
 	                  	{
+				## print fmt("%s attempted %.0f or more connections", key$host, result["conn attempted"]$sum);
 	                  	local r = result["scan.typeof.fail"];
 	                  	local side = Site::is_local_addr(key$host) ? "local" : "remote";
 	                  	local dur = duration_to_mins_secs(r$end-r$begin);
@@ -94,13 +95,20 @@ function add_sumstats(id: conn_id, reverse: bool)
 	}
 
 #Identify source and destination IP address
+
+
 #Identify source and destination ports (80)
+
+
 #Epoch (How many different IP addresses are in that time interval)
+
 #Counter for how many IP addresses 
+
 #Check on the criteria
     #Is the port port 80
     #right timeframe
     #the source IP has scanned, a threshold for how many times it has scanned
+    
 #Log the source IP address(if it fits the criteria)
 
 
