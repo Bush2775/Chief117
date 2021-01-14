@@ -7,4 +7,4 @@ Meetings that Justin can make: Fridays @ 8 AM
 
 Meetings that Blake can make: MWF @ 8 AM
 
-The Script can be run by adding it as an arguement when running Zeek
+The Script can be run by adding it as an argument when running Zeek
