@@ -5,18 +5,21 @@ event connection_state_remove(c: connection){
     NOTICE([$note=austinsType, $msg = "It worked. I have this random line written down!", $conn=c]);
 }
 
-event http_stats(c: connection, stats: http_stats_rec){
-    print stats;
-}
+## endpoints to attempt matching against.
+global matchEndpoints = /\/en-us\/index.html\?page=[a-zA-Z0-9]+\&v=1/ |
+                        /\/en-us\/docs.html\?type=[a-zA-Z0-9]+\&v=1/ |
+                        /\/en-us\/test.html\?message=[a-zA-Z0-9]+\&v=1/;
 
 event HTTP::log_http(rec: HTTP::Info){
     print rec$trans_depth;
+    if(matchEndpoints in rec$uri){
+        print "I found it!", rec$uri;
+    }
 }
 
-
-
-## endpoints to attempt matching against.
-local matchEndpoints = // | // | //;
+#event http_stats(c: connection, stats: http_stats_rec){
+#    print stats;
+#}
 
 
 #HttpUrls:
