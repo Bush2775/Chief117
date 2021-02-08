@@ -18,6 +18,13 @@ hook Notice::policy(n: Notice::Info) &priority=5
     }
 
 
+# Raising notices
+NOTICE([$note=Password_Guessing,
+        $msg=fmt("%s appears to be guessing SSH passwords (seen in %d connections).", key$host, r$num),
+        $src=key$host,
+        $identifier=cat(key$host)]);
+
+
 #Extra information to be added to email body sections
 #This one for http requests as shown in the Zeek Manual
 hook Notice::policy(n: Notice::Info)
