@@ -1,43 +1,51 @@
-# Append a new notice value to the Notice::Type enumerable.
-redef enum Notice::Type += { austinsType };
+module covenant;
 
-event connection_state_remove(c: connection){
-    NOTICE([$note=austinsType, $msg = "It worked. I have this random line written down!", $conn=c]);
+export {
+    redef enum Log::ID += { covenant::LOG };
+
+    # Covenant endpoints to attempt matching against.
+    global covenantEndpoints = /\/en-us\/index.html\?page=[a-zA-Z0-9]+\&v=1/ |
+                                /\/en-us\/docs.html\?type=[a-zA-Z0-9]+\&v=1/ |
+                                /\/en-us\/test.html\?message=[a-zA-Z0-9]+\&v=1/ &redef;
+
+    # User definable high http trans depth
+    global high_http_trans_depth = 10 &redef;
+
+    type Info: record {
+        ts: time &log;
+        id: conn_id &log;
+        high_http_trans_depth_found: bool &log;
+        covenant_endpoint_found: bool &log;
+    };
 }
 
-## endpoints to attempt matching against.
-global matchEndpoints = /\/en-us\/index.html\?page=[a-zA-Z0-9]+\&v=1/ |
-                        /\/en-us\/docs.html\?type=[a-zA-Z0-9]+\&v=1/ |
-                        /\/en-us\/test.html\?message=[a-zA-Z0-9]+\&v=1/;
+event zeek_init(){
+    Log::create_stream(covenant::LOG, [$columns=covenant::Info, $path="covenant"]);
+}
 
+# Check for the number of back and forth requests/responses.
+# Also check to see if the endpoint matches one of the known endpoints
 event HTTP::log_http(rec: HTTP::Info){
-    print rec$trans_depth;
-    if(matchEndpoints in rec$uri){
-        print "I found it!", rec$uri;
+    if(rec$trans_depth > high_http_trans_depth){
+        print rec$trans_depth;
+    }
+    if(covenantEndpoints in rec$uri){
+        print rec$uri;
     }
 }
 
-#event http_stats(c: connection, stats: http_stats_rec){
-#    print stats;
+event connection_state_remove(c: connection){
+    if(T){
+        Log::write(covenant::LOG, covenant::Info($ts=network_time(), $id=c$id, $high_http_trans_depth_found=T, $covenant_endpoint_found=T));
+        #NOTICE([$note=covenantTraffic, $msg = "Covenant Traffic Has Been Detected", $conn=c, $identifier=cat(c$id), $suppress_for=5min]);
+    }
+}
+
+# Append a new notice value to the Notice::Type enumerable.
+#redef enum Notice::Type += { covenantTraffic };
+
+# Notice policy which can change where the notice is sent.
+#hook Notice::policy(n: Notice::Info){
+#	add n$actions[Notice::ACTION_LOG];
+#    #add n$actions[Notice::ACTION_EMAIL];
 #}
-
-
-#HttpUrls:
-#    - /en-us/index.html?page={GUID}&v=1
-#    - /en-us/docs.html?type={GUID}&v=1
-#    - /en-us/test.html?message={GUID}&v=1
-#HttpRequestHeaders:
-#    - Name: User-Agent
-#      Value: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36
-#HttpPostRequest: |
-#    i=a19ea23062db990386a3a478cb89d52e&data={DATA}&session=75db-99b1-25fe4e9afbe58696-320bea73
-#HttpPostResponse: |
-#    <html>
-#        <head>
-#            <title>Hello World!</title>
-#        </head>
-#        <body>
-#            <p>Hello World!</p>
-#            // Hello World! {DATA}
-#        </body>
-#    </html>
