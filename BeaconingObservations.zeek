@@ -16,6 +16,11 @@ event connection_state_remove(c: connection)
                         SumStats::Key($host = c$id$orig_h),
                         SumStats::Observation($num = c$orig$num_pkts));
     #sumstat to get unique GUIDs and how often they show up?
+    #Ip with geolocation and blacklisted countries (done in competition, try to utilize)
+    #Transmission depth?
+    #timestamps?
+    #packets over cetain strange ports?
+    #ja3 hash?
     }
 
 event zeek_init()
