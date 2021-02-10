@@ -15,6 +15,7 @@ event connection_state_remove(c: connection)
     SumStats::observe("num packets from origin",
                         SumStats::Key($host = c$id$orig_h),
                         SumStats::Observation($num = c$orig$num_pkts));
+    #sumstat to get unique GUIDs and how often they show up?
     }
 
 event zeek_init()
