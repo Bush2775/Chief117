@@ -9,7 +9,7 @@ event connection_established(c: connection)
     if ( connection_seen )
     {
         print fmt("     Time since last connection: %s", net_time - last_connection_time);
-        print fmt("     Time since last connection: %s", time_to_double(net_time) - time_to_double(last_connection_time));
+        #print fmt("     Time since last connection: %s", time_to_double(net_time) - time_to_double(last_connection_time));
         SumStats::observe("time delta",
                         SumStats::Key($host = c$id$resp_h), #can be changed to be a specific IP address or a range of addresses
                         SumStats::Observation($dbl = time_to_double(net_time) - time_to_double(last_connection_time)));
