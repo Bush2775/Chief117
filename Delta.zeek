@@ -22,7 +22,7 @@ event zeek_init()
                                                         $apply=set(SumStats::MIN, SumStats::MAX, SumStats::AVERAGE));
         #create sumstats for tracking time delta between connections
         SumStats::create([$name = "tracking time delta",
-                      $epoch = 200hr,
+                      $epoch = 15min,
                       $reducers = set(connectionDeltaReducer),
                       $epoch_result(ts: time, key: SumStats::Key, result: SumStats::Result) =
                       {
