@@ -2,6 +2,20 @@
 @load base/protocols/conn
 @load base/protocols/http
 
+export {
+    # Create an ID for our new stream.
+    redef enum Log::ID += { Packets::LOG };
+
+    # Define the record type that will contain the data to log.
+    #number packets
+    type Info: record {
+        ts: time &log;
+        orig_h: string &log;
+        resp_h: addr &log;
+        num_pkts: double &log;
+	};
+}
+
 # We use the connection_attempt event to limit our observations to those
 # which were attempted and not successful.
 event connection_state_remove(c: connection)
@@ -19,18 +33,19 @@ event connection_state_remove(c: connection)
     #Ip with geolocation and blacklisted countries (done in competition, try to utilize)
     #Transmission depth?
     #timestamps?
-    #packets over cetain strange ports?
     #ja3 hash?
     }
 
 event zeek_init()
     {
+        Log::create_stream(Packets::LOG, [$columns=Packets::Info, $path="numPackets"]);
         local responseLenReducer = SumStats::Reducer($stream="response length from responding hosts",
                                                         $apply=set(SumStats::SUM));
 
         local numPacketsReducer = SumStats::Reducer($stream = "num packets from origin",
                                                         $apply=set(SumStats::SUM));
 
+        
         #create sumstats for tracking response length
         SumStats::create([$name = "tracking response length",
                       $epoch = 5min,
@@ -57,6 +72,11 @@ event zeek_init()
                         # of connections that were seen.  The $sum field is provided as a 
                         # double type value so we need to use %f as the format specifier.
                         print fmt("Number of packets sent from %s: %.0f",key$host, result["num packets from origin"]$sum);
-                        }]);              
-                   
+                        #write to the log here
+
+                        }
+
+                        ]);  
+           
+           
     }
