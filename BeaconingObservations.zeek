@@ -24,7 +24,9 @@ export {
 	};
 }
 
-# Using the connection_state_remove event (FINISH)
+# Using the connection_state_remove event We can get the necessary information to look at the connection
+#and find evidence of beaconing.  
+#Other avenues of detection can be added by creating a new SumStat
 event connection_state_remove(c: connection)
     {
     #create observation for response length
