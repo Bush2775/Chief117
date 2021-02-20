@@ -14,3 +14,8 @@ script_dir = scripts
 description = This script provides the ability to calculate the time difference (delta) between a connection from a host to responding ip and its last connection.
 depends =
 	zeek >=2.5.5
+
+
+Beaconing Detection
+
+This script uses the SumStats framework to look for signs of beaconing between the Covenant server and the victim computer. Provided, the SumStats look at the number of packets sent between the attacker and victim, along with the response length from the attacker. 
