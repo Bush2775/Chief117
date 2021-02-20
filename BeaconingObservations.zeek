@@ -26,22 +26,18 @@ export {
 
 # Using the connection_state_remove event We can get the necessary information to look at the connection
 #and find evidence of beaconing.  
-#Other avenues of detection can be added by creating a new SumStat
+#Other avenues of detection can be added by creating a new SumStat observe, reducer, and create function in the zeek_init()
 event connection_state_remove(c: connection)
     {
     #create observation for response length
     SumStats::observe("response length from responding hosts",
                         SumStats::Key($host = c$id$resp_h), #This variable can be changed to look at a specific IP address or a range of IP addresses
                         SumStats::Observation($num = c$resp$size));
-    #observation for num packets
+    #observation for num packets from origin
     SumStats::observe("num packets from origin",
                         SumStats::Key($host = c$id$orig_h),
                         SumStats::Observation($num = c$orig$num_pkts));
-    #sumstat to get unique GUIDs and how often they show up?
-    #Ip with geolocation and blacklisted countries (done in competition, try to utilize)
-    #Transmission depth?
-    #timestamps?
-    #ja3 hash?
+    
     }
 
 event zeek_init()
