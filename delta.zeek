@@ -12,9 +12,10 @@ export {
         ts: time &log;
         orig_h: string &log;
         resp_h: addr &log;
-        time_delta: time &log;
+        avg: time &log;
         min: double &log;
         max: double &log;
+        num: int &log;
 	};
 }
 
@@ -46,8 +47,8 @@ event zeek_init()
                       {
                           #print fmt("Average delta time between %s connections sent from %s: %s", result["time delta"]$num+1, key$host, double_to_time(result["time delta"]$average));
                           #print fmt("Delay: %s Min: %s Max: %s", result["time delta"]$average, result["time delta"]$min, result["time delta"]$max);
-		          Log::write(delta::LOG, delta::Info($ts=ts, $orig_h=key$str, $resp_h=key$host, $time_delta=double_to_time(result["time delta"]$average),
-						$min=result["time delta"]$min, $max=result["time delta"]$max));
+		          Log::write(delta::LOG, delta::Info($ts=ts, $orig_h=key$str, $resp_h=key$host, $avg=double_to_time(result["time delta"]$average),
+						$min=result["time delta"]$min, $max=result["time delta"]$max, $num=result["time delta"]$num+1));
                       }
                       ]);
     }
