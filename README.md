@@ -4,7 +4,7 @@ Introduction
 
 Installation and Usage
 Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: 
-	zeek -r <name of script> <name of file>
+	zeek -r [name of script] [name of file]
 
 
 Scripts Included in this Repository
