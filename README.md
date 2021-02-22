@@ -1,8 +1,9 @@
 README.md
 
-Introduction
+[Introduction]
+Welcome to Project Chief 117. This set of scripts can be used with Zeek to detect Covenant C2 traffic. 
 
-Installation and Usage
+[Installation/Usage]
 Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: 
 	zeek -r [name of script] [name of file]
 
