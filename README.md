@@ -8,7 +8,7 @@ Installation/Usage
 
 Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: zeek -r [name of script] [name of file]
 
-These scripts can be installed by adding to the load section of Zeek, which is in the local.zeek config file. The location of this file, in our testing machine, is /opt/zeek/share/zeek/site/local.zeek
+These scripts can be installed by adding to the load section of Zeek, which is in the local.zeek config file. The location of this file, in our testing machine, is /opt/zeek/share/zeek/site/local.zeek. The location of this file in your particular instance will depend on your Zeek install. 
 
 
 Scripts Included in this Repository
