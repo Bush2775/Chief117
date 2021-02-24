@@ -29,4 +29,4 @@ depends = zeek >=2.5.5
 
 <h3>Beaconing Detection</h3>
 
-This script uses the SumStats framework to look for signs of beaconing between the Covenant server and the victim computer. Provided, the SumStats look at the number of packets sent between the attacker and victim, along with the response length from the attacker. This script also uses Regex to find default endpoints that Covenant uses to connect to a victim machine. 
+This script uses the SumStats framework to look for signs of beaconing between the Covenant server and the victim computer. Provided, the SumStats look at the number of packets sent between the attacker and victim, along with the response length from the attacker. This script also uses Regex to find default endpoints that Covenant uses to connect to a victim machine. Other attributes of beaconing can be added to this file by adding the necessary parts for the SumStats required. 
