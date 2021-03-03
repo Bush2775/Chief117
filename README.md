@@ -1,12 +1,13 @@
 <h1>Introduction</h1>
 
-Welcome to Project Chief 117. This set of scripts can be used with Zeek to detect Covenant C2 traffic. While there are tools and repositories that can detect C2 traffic from Zeek logs, Zeek cannot detect Covenant traffic natively. Our package will allow Zeek to natively detect Covenant traffic, beaconing behavior, and other signs of the framework. With this ability now being native to Zeek, users and developers won’t have to find or develop other tools for that functionality.
+Welcome to Project Chief 117, an enhancement for Zeek made by a team of students from Brigham Young University. This set of scripts can be used with Zeek to detect Covenant C2 traffic. While there are tools and repositories that can detect C2 traffic from Zeek logs, Zeek cannot detect Covenant traffic natively. Our package will allow Zeek to natively detect Covenant traffic, beaconing behavior, and other signs of the framework. With this ability now being native to Zeek, users and developers won’t have to find or develop other tools for that functionality.
 Zeek has a massive footprint out in the open source community. It has over 110 community-contributed packages, 20 plus years of federally funded research and design, and it has over 10 thousand deployments worldwide.
 
 
 <h2>Installation/Usage</h2>
 
-Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: zeek -r [name of file] [name of script]
+Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: 
+`zeek -r [name of file] [name of script]`
 
 Included are results of running the scripts against the sample packet capture in the "Examples" directory.
 
