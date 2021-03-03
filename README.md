@@ -1,7 +1,7 @@
 <h1>Introduction</h1>
 
-Welcome to Project Chief 117. This set of scripts can be used with Zeek to detect Covenant C2 traffic. While there are tools and repositories that can detect C2 traffic from Zeek logs, Zeek can not detect Covenant traffic natively. Our package will allow Zeek to natively detect Covenant traffic, beaconing behavior, and other signs of the framework. With this ability now being native to Zeek, users and developers won’t have to find or develop other tools for that functionality.
-Zeek has a massive footprint out in the open source community. It has over 110 community-contributed packages, 20 plus years of federally-funded research and design, and it has over 10 thousand deployments worldwide.
+Welcome to Project Chief 117. This set of scripts can be used with Zeek to detect Covenant C2 traffic. While there are tools and repositories that can detect C2 traffic from Zeek logs, Zeek cannot detect Covenant traffic natively. Our package will allow Zeek to natively detect Covenant traffic, beaconing behavior, and other signs of the framework. With this ability now being native to Zeek, users and developers won’t have to find or develop other tools for that functionality.
+Zeek has a massive footprint out in the open source community. It has over 110 community-contributed packages, 20 plus years of federally funded research and design, and it has over 10 thousand deployments worldwide.
 
 
 <h2>Installation/Usage</h2>
@@ -30,5 +30,5 @@ This script uses the SumStats framework to look for signs of beaconing between t
 
 <h3>Endpoint-Detection.zeek</h3>
 
-This script checks for endpoints used by Covenant to disquise its communication with the victim machine. While this only searches for the default comfigurations of those endpoints, the endpoints can be changed by editing the Regex in the script in lines 15-18. Coupled with the transmission depth of the connection, Zeek uses those two pieces of information to create a log fine with the UID, Covenant endpoint, time stamp and connection id. 
+This script checks for endpoints used by Covenant to disguise its communication with the victim machine. While this only searches for the default configurations of those endpoints, the endpoints can be changed by editing the Regex in the script in lines 15-18. Coupled with the transmission depth of the connection, Zeek uses those two pieces of information to create a log fine with the UID, Covenant endpoint, time stamp and connection id. 
 
