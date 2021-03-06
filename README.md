@@ -33,3 +33,19 @@ This script uses the SumStats framework to look for signs of beaconing between t
 
 This script checks for endpoints used by Covenant to disguise its communication with the victim machine. While this only searches for the default configurations of those endpoints, the endpoints can be changed by editing the Regex in the script in lines 15-18. Coupled with the transmission depth of the connection, Zeek uses those two pieces of information to create a log fine with the UID, Covenant endpoint, time stamp and connection id. 
 
+
+<h2>Future Additions in Development</h2>
+
+While our package includes those scripts vital to detecting Covenant C2 traffic with Zeek, new developments may be added on by individual contributors and organizations in the Zeek community. The following features have been explored in our own testing and may serve as starting points for the next stage of development.
+
+<h3>Email Notices</h3>
+
+An additional feature to be considered for later developments on the Notice framework for these scripts is email notifications for specified activities in Covenant traffic. Referencing the current Zeek documentation, email notices can be configured to alert administrators and other monitoring positions to factors that pass beyond set perimeters and limits in the framework.
+
+<h3>Log File Consolidation</h3>
+
+An additional feature to be considered for later developments within the Logging framework for these scripts is consolidation of log files produced from Covenant traffic detection. For instance, a bash shell script which takes the existing log files as input and extracts certain variables and the events data associated with them may be run as a cron job on a scheduled basis. By consolidating log files, the data compiled in a certain monitored period becomes easier to manage and classify based on the nature of events occurring within that timespan and the administrative discretion.
+
+An example of a simple printout of log data variables (i.e. orig_h) in the command line using the utility `zeek-cut` with the `-d` flag to print the timestamp epoch in human-readable format:
+
+`cat [log_file] | zeek-cut -d ts [log_variable1] [log_variable2]`
