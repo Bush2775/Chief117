@@ -45,3 +45,5 @@ An additional feature to be considered for later developments within the Logging
 An example of a simple printout of log data variables (i.e. orig_h) in the command line using the utility `zeek-cut` with the `-d` flag to print the timestamp epoch in human-readable format:
 
 `cat [log_file] | zeek-cut -d ts [log_variable1] [log_variable2]`
+
+In addition, another tool to consider for the design of this feature would be Zeek Analysis Tools (ZAT), found here: https://github.com/SuperCowPowers/zat
