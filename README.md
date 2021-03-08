@@ -29,10 +29,6 @@ You can redefine epoch time to fit your organization’s needs.
 
 This script uses the SumStats framework to look for signs of beaconing between the Covenant server and the victim computer. Provided, the SumStats look at the number of packets sent between the attacker and victim, along with the response length from the attacker. This script also uses Regex to find default endpoints that Covenant uses to connect to a victim machine. Other attributes of beaconing can be added to this file by adding the necessary parts for the SumStats required. 
 
-<h3>Endpoint-Detection.zeek</h3>
-
-This script checks for endpoints used by Covenant to disguise its communication with the victim machine. While this only searches for the default configurations of those endpoints, the endpoints can be changed by editing the Regex in the script in lines 15-18. Coupled with the transmission depth of the connection, Zeek uses those two pieces of information to create a log fine with the UID, Covenant endpoint, time stamp and connection id. 
-
 
 <h2>Future Additions in Development</h2>
 
