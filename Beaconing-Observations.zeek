@@ -109,6 +109,6 @@ event zeek_init()
 # Check to see if the endpoint matches one of the known endpoints
 event HTTP::log_http(rec: HTTP::Info){
     if(covenantEndpoints in rec$uri){
-        NOTICE([$note=covenantTraffic, $ts=rec$ts, $uid=rec$uid, $id=rec$id, $msg = "Covenant Traffic Has Been Detected", $identifier=cat($id=rec$id), $suppress_for=5min]);
+        NOTICE([$note=covenantTraffic, $ts=rec$ts, $uid=rec$uid, $id=rec$id, $msg = "Default HTTP Covenant Endpoint Has Been Detected", $identifier=cat($id=rec$id), $suppress_for=5min]);
     }
 }
