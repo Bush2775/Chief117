@@ -9,7 +9,7 @@ Zeek has a massive footprint out in the open source community. It has over 110 c
 Two different use cases are available. To use the script against a sample packet capture, the following command should be given in the command line: 
 `zeek -r [name of file] [name of script]`
 
-Included are results of running the scripts against the sample packet capture in the "Examples" directory.
+Included are results of running the scripts against the sample packet capture in the "Examples" zip file.
 
 
 
